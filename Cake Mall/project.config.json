@@ -41,7 +41,7 @@
     "minifyWXSS": true,
     "showES6CompileOption": false
   },
-  "appid": "******************",
+  "appid": "******************",//替换为自己的appid
   "libVersion": "2.30.2",
   "condition": {},
   "editorSetting": {
