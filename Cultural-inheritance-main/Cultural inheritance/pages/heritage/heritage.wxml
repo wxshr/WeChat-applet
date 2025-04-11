@@ -1,0 +1,54 @@
+<view class="heritage-page">
+  <!-- 分类筛选按钮组 -->
+  <view class="filter-wrapper">
+    <view class="category-outer-container">
+      <scroll-view 
+        class="category-filter" 
+        scroll-x 
+        enable-flex="{{true}}" 
+        show-scrollbar="{{false}}" 
+        enhanced="{{true}}"
+        scroll-with-animation="{{true}}"
+      >
+        <view class="category-container">
+          <!-- 分类项目 -->
+          <view 
+            wx:for="{{categories}}" 
+            wx:key="id"
+            class="category-item {{currentCategory === item.id ? 'active' : ''}}"
+            bindtap="switchCategory"
+            data-id="{{item.id}}"
+          >
+            {{item.name}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 瀑布流布局 -->
+  <view class="waterfall">
+    <view class="waterfall-column">
+      <block wx:for="{{leftList}}" wx:key="id">
+        <view class="heritage-item" bindtap="showDetail" data-id="{{item.id}}">
+          <image src="{{item.imageUrl}}" mode="aspectFill" class="heritage-image"/>
+          <view class="heritage-info">
+            <view class="heritage-title">{{item.title}}</view>
+            <view class="heritage-desc">{{item.description}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="waterfall-column">
+      <block wx:for="{{rightList}}" wx:key="id">
+        <view class="heritage-item" bindtap="showDetail" data-id="{{item.id}}">
+          <image src="{{item.imageUrl}}" mode="aspectFill" class="heritage-image"/>
+          <view class="heritage-info">
+            <view class="heritage-title">{{item.title}}</view>
+            <view class="heritage-desc">{{item.description}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view> 
