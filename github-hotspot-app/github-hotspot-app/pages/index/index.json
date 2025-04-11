@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "GitHub热点",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f6f8fa",
+  "usingComponents": {
+    "repo-card": "/components/repo-card"
+  }
+} 
