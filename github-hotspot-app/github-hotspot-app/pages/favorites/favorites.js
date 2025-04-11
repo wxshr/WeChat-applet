@@ -31,11 +31,11 @@ Page({
   
   // 收藏状态变化处理
   onFavoriteChange: function(e) {
-    const { repo, isFavorited } = e.detail;
+    const { id, isFavorited } = e.detail;
     
     // 从收藏列表中移除
     if (!isFavorited) {
-      const favorites = this.data.favorites.filter(item => item.id !== repo.id);
+      const favorites = this.data.favorites.filter(item => item.id !== id);
       this.setData({
         favorites: favorites,
         isEmpty: favorites.length === 0

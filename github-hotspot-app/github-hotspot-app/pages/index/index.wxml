@@ -29,8 +29,15 @@
       <text>加载中...</text>
     </view>
     
+    <!-- 错误提示 -->
+    <view class="error-tip" wx:if="{{hasError}}">
+      <image src="/images/error.png" mode="aspectFit"></image>
+      <text>{{errorMsg || '加载失败'}}</text>
+      <button class="retry-btn" bindtap="onRetry">重新加载</button>
+    </view>
+    
     <!-- 无数据提示 -->
-    <view class="empty-tip" wx:if="{{!isLoading && weekly.length === 0}}">
+    <view class="empty-tip" wx:if="{{!isLoading && !hasError && weekly.length === 0}}">
       <image src="/images/empty.png" mode="aspectFit"></image>
       <text>暂无数据</text>
     </view>
@@ -44,5 +51,19 @@
     <view class="load-all" wx:if="{{!isLoading && !hasMore && weekly.length > 0}}">
       <text>已加载全部</text>
     </view>
+  </view>
+  
+  <!-- Token设置区 -->
+  <view class="token-area card">
+    <view class="token-title">设置GitHub Token (可选)</view>
+    <view class="token-input-area">
+      <input class="token-input" 
+             type="text" 
+             placeholder="输入您的GitHub Token" 
+             value="{{inputToken}}" 
+             bindinput="onInputToken" />
+      <button class="token-btn" bindtap="onSaveToken">保存</button>
+    </view>
+    <view class="token-tip">* 设置Token可以获得更高的API请求限制</view>
   </view>
 </view> 

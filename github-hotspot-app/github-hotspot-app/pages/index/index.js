@@ -1,106 +1,130 @@
-const api = require('../../utils/api');
-const util = require('../../utils/util');
+const { getTrendingRepos } = require('../../utils/api.js');
 
 Page({
   data: {
-    weekly: [], // 每周热门
+    inputToken: '',
+    weekly: [],
     isLoading: false,
     hasMore: true,
-    currentPage: 1,
+    hasError: false,
+    errorMsg: '',
     languages: [
       { name: '全部', value: '' },
       { name: 'JavaScript', value: 'javascript' },
       { name: 'Python', value: 'python' },
       { name: 'Java', value: 'java' },
       { name: 'Go', value: 'go' },
-      { name: 'Rust', value: 'rust' }
+      { name: 'C++', value: 'c++' }
     ],
     currentLanguage: ''
   },
 
   onLoad: function() {
-    this.fetchTrendingRepos();
+    this.getTrendingRepos();
   },
-  
-  onPullDownRefresh: function() {
-    this.setData({
-      weekly: [],
-      currentPage: 1,
-      hasMore: true
+
+  getTrendingRepos: function() {
+    const that = this;
+    this.setData({ 
+      isLoading: true,
+      hasError: false,
+      errorMsg: ''
     });
-    this.fetchTrendingRepos().then(() => {
-      wx.stopPullDownRefresh();
-    }).catch(() => {
-      wx.stopPullDownRefresh();
+    
+    wx.showLoading({
+      title: '加载中...'
     });
+    
+    getTrendingRepos(this.data.currentLanguage, 'weekly', 1)
+      .then(res => {
+        console.log('获取到仓库数据:', res ? res.length : 0);
+        that.setData({
+          weekly: res || [],
+          isLoading: false
+        });
+        wx.hideLoading();
+      })
+      .catch(err => {
+        console.error('获取趋势仓库失败:', err);
+        this.setData({ 
+          isLoading: false,
+          weekly: [],
+          hasError: true,
+          errorMsg: err.message || '加载数据失败'
+        });
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败: ' + (err.message || '未知错误'),
+          icon: 'none',
+          duration: 2000
+        });
+      });
   },
-  
-  onReachBottom: function() {
-    if (!this.data.hasMore || this.data.isLoading) return;
-    this.fetchTrendingRepos(this.data.currentPage + 1);
-  },
-  
-  // 选择编程语言
+
   onLanguageChange: function(e) {
     const language = e.currentTarget.dataset.language;
     this.setData({
-      currentLanguage: language,
-      weekly: [],
-      currentPage: 1,
-      hasMore: true
+      currentLanguage: language
     });
-    this.fetchTrendingRepos();
+    this.getTrendingRepos();
   },
-  
-  // 获取热门仓库
-  fetchTrendingRepos: function(page = 1) {
-    if (this.data.isLoading) return Promise.reject();
-    
-    this.setData({ isLoading: true });
-    
-    return api.getTrendingRepos(this.data.currentLanguage, 'weekly', page)
-      .then(repos => {
-        // 检查仓库是否已收藏
-        repos.forEach(repo => {
-          repo.isFavorited = util.isFavorite(repo.id);
-        });
-        
-        // 更新数据
-        this.setData({
-          weekly: page === 1 ? repos : this.data.weekly.concat(repos),
-          isLoading: false,
-          hasMore: repos.length === 10,
-          currentPage: page
-        });
-      })
-      .catch(err => {
-        console.error('获取热门仓库失败:', err);
-        this.setData({ isLoading: false });
-        wx.showToast({
-          title: '获取数据失败',
-          icon: 'none'
-        });
-      });
-  },
-  
-  // 收藏状态变化处理
+
   onFavoriteChange: function(e) {
-    const { repo, isFavorited } = e.detail;
-    const index = this.data.weekly.findIndex(item => item.id === repo.id);
+    // 更新列表中的收藏状态
+    const { id, isFavorited } = e.detail;
+    if (id) {
+      const weekly = this.data.weekly.map(item => {
+        if (item && item.id === id) {
+          return {...item, isFavorited};
+        }
+        return item;
+      });
+      this.setData({ weekly });
+    }
+  },
+
+  onInputToken: function(e) {
+    this.setData({
+      inputToken: e.detail.value
+    });
+  },
+
+  onSaveToken: function() {
+    if (!this.data.inputToken) {
+      wx.showToast({
+        title: 'Token不能为空',
+        icon: 'none'
+      });
+      return;
+    }
     
-    if (index > -1) {
-      // 更新收藏状态
-      this.setData({
-        [`weekly[${index}].isFavorited`]: isFavorited
+    const app = getApp();
+    try {
+      app.setGithubToken(this.data.inputToken);
+      wx.showToast({
+        title: 'Token保存成功',
+        icon: 'success'
+      });
+      // 保存成功后重新加载数据
+      setTimeout(() => {
+        this.getTrendingRepos();
+      }, 1000);
+    } catch (error) {
+      console.error('保存Token失败:', error);
+      wx.showToast({
+        title: '保存失败',
+        icon: 'none'
       });
     }
   },
+
+  onPullDownRefresh: function() {
+    this.getTrendingRepos();
+    wx.stopPullDownRefresh();
+  },
   
-  // 分享功能
-  onShareAppMessage: function() {
-    return {
-      title: 'GitHub热点小程序',
-      path: '/pages/index/index'
-    };
+  // 点击重试
+  onRetry: function() {
+    this.getTrendingRepos();
   }
-}); 
+});
