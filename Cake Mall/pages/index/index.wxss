@@ -1,0 +1,73 @@
+.container {
+  padding: 20rpx;
+  background-color: #f8f8f8;
+}
+
+.banner {
+  width: 100%;
+  height: 350rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+}
+
+.category-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  margin-bottom: 30rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+
+.category-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.cake-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.cake-item {
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.cake-image {
+  width: 100%;
+  height: 300rpx;
+}
+
+.cake-info {
+  padding: 16rpx;
+}
+
+.cake-name {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.cake-price {
+  font-size: 32rpx;
+  color: #FF6B6B;
+  font-weight: bold;
+} 
