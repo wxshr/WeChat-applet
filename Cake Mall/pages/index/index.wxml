@@ -10,10 +10,22 @@
   </view>
 
   <view class="category-list">
-    <view class="category-item" wx:for="{{categories}}" wx:key="id" bindtap="onCategoryTap" data-id="{{item.id}}">
-      <image src="{{item.icon}}" mode="aspectFit" class="category-icon"/>
+    <view class="category-item {{currentCategory === 0 ? 'active' : ''}}" bindtap="onCategoryTap" data-id="{{0}}">
+      <view class="category-icon-wrapper">
+        <image src="/assets/icons/all.png" mode="aspectFit" class="category-icon"/>
+      </view>
+      <text>全部</text>
+    </view>
+    <view class="category-item {{currentCategory === item.id ? 'active' : ''}}" wx:for="{{categories}}" wx:key="id" bindtap="onCategoryTap" data-id="{{item.id}}">
+      <view class="category-icon-wrapper">
+        <image src="{{item.icon}}" mode="aspectFit" class="category-icon"/>
+      </view>
       <text>{{item.name}}</text>
     </view>
+  </view>
+
+  <view class="category-title">
+    <text>{{showCategoryText}}</text>
   </view>
 
   <view class="cake-list">
@@ -24,5 +36,9 @@
         <text class="cake-price">¥{{item.price}}</text>
       </view>
     </view>
+  </view>
+
+  <view wx:if="{{cakes.length === 0}}" class="empty-category">
+    <text>暂无此分类下的蛋糕</text>
   </view>
 </view> 
