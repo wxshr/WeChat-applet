@@ -12,7 +12,7 @@
 - 商品详情展示
 - 交互式UI与状态反馈
 
-[查看详细文档]([./Cake Mall/README.md)
+[查看详细文档]([./Cake-Mall/README.md)
 
 ### 2. GitHub热点追踪 ⭐
 **定位**：GitHub趋势仓库展示平台  
