@@ -1,0 +1,42 @@
+<view class="container">
+  <swiper class="cake-swiper" indicator-dots="{{true}}" autoplay="{{true}}">
+    <block wx:for="{{cake.images}}" wx:key="*this">
+      <swiper-item>
+        <image src="{{item}}" mode="aspectFill" class="cake-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="info-section">
+    <view class="price-row">
+      <text class="price">¥{{cake.price}}</text>
+      <view class="quantity-control">
+        <text class="minus" bindtap="onMinusTap">-</text>
+        <text class="quantity">{{quantity}}</text>
+        <text class="plus" bindtap="onPlusTap">+</text>
+      </view>
+    </view>
+    <text class="name">{{cake.name}}</text>
+    <text class="description">{{cake.description}}</text>
+  </view>
+
+  <view class="specs-section">
+    <view class="spec-item">
+      <text class="spec-label">规格</text>
+      <text class="spec-value">{{cake.size}}</text>
+    </view>
+    <view class="spec-item">
+      <text class="spec-label">口味</text>
+      <text class="spec-value">{{cake.flavor}}</text>
+    </view>
+    <view class="spec-item">
+      <text class="spec-label">保质期</text>
+      <text class="spec-value">{{cake.shelf_life}}</text>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="cart-btn" bindtap="onAddToCartTap">加入购物车</view>
+    <view class="buy-btn" bindtap="onBuyNowTap">立即购买</view>
+  </view>
+</view> 
