@@ -1,0 +1,367 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+  width: 80%;
+  margin: 30rpx auto;
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  border: 4rpx solid #1890ff;
+}
+
+.userinfo-nickname {
+  font-size: 32rpx;
+  color: #333;
+  margin-top: 10rpx;
+}
+
+.avatar-wrapper {
+  padding: 0;
+  width: 56px !important;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background: none;
+}
+
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.nickname-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: .5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.nickname-label {
+  width: 105px;
+}
+
+.nickname-input {
+  flex: 1;
+}
+
+.container {
+  padding: 20rpx;
+  box-sizing: border-box;
+  background: #f5f5f5;
+}
+
+/* 轮播图样式 */
+.swiper {
+  width: 100%;
+  height: 500rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-desc {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 28rpx;
+}
+
+/* 搜索框样式 */
+.search-box {
+  margin: 20rpx 0;
+  padding: 0 20rpx;
+  background: #fff;
+  border-radius: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.search-box input {
+  height: 80rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+}
+
+/* 文化遗产轮播展示样式 */
+.heritage-swiper-section {
+  margin: 30rpx 0;
+  width: 100%;
+}
+
+.heritage-swiper {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.heritage-swiper-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.heritage-swiper-item image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heritage-swiper-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  color: #fff;
+}
+
+.heritage-swiper-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.heritage-swiper-desc {
+  font-size: 24rpx;
+  display: block;
+  opacity: 0.9;
+}
+
+/* 热门文化遗产展示样式 */
+.popular-section {
+  margin: 30rpx 0;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  color: #333;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 30rpx;
+  background: #1890ff;
+  border-radius: 3rpx;
+}
+
+.popular-content {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.popular-content image {
+  width: 100%;
+  height: 300rpx;
+}
+
+.popular-info {
+  padding: 20rpx;
+}
+
+.popular-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.popular-desc {
+  font-size: 26rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 16rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.popular-stats {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.likes {
+  font-size: 24rpx;
+  color: #1890ff;
+  display: flex;
+  align-items: center;
+}
+
+/* 物质文化遗产展示样式 */
+.heritage-section {
+  margin: 30rpx 0;
+}
+
+.heritage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.heritage-item {
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.heritage-item image {
+  width: 100%;
+  height: 200rpx;
+}
+
+.heritage-info {
+  padding: 16rpx;
+}
+
+.heritage-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.heritage-desc {
+  font-size: 24rpx;
+  color: #666;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* 用户信息区域样式 */
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30rpx 0;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #333;
+  font-size: 28rpx;
+}
+
+.nickname-input {
+  margin-top: 20rpx;
+  padding: 10rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 10rpx;
+  width: 80%;
+  text-align: center;
+}
+
+/* 搜索结果区域样式 */
+.search-results {
+  margin: 30rpx 0;
+}
+
+/* 用户信息样式 */
+.usermotto {
+  margin-top: 40rpx;
+  text-align: center;
+  color: #666;
+  font-size: 28rpx;
+}
+
+/* 底部导航按钮样式 */
+.nav-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx;
+  background: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+}
+
+.nav-item.active {
+  color: #07c160;
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 4rpx;
+  background: #07c160;
+  border-radius: 2rpx;
+}

@@ -1,0 +1,70 @@
+<view class="container">
+  <form bindsubmit="submitForm">
+    <view class="form-group">
+      <view class="form-label">文化遗产名称</view>
+      <input 
+        name="title" 
+        placeholder="请输入文化遗产名称" 
+        value="{{formData.title}}"
+        bindinput="inputTitle"
+      />
+      <view class="error-tip" wx:if="{{errors.title}}">{{errors.title}}</view>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">分类</view>
+      <picker 
+        mode="selector" 
+        range="{{categories}}" 
+        range-key="name"
+        value="{{formData.categoryIndex}}"
+        bindchange="categoryChange"
+      >
+        <view class="picker">
+          {{categories[formData.categoryIndex].name || '请选择分类'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">详细描述</view>
+      <textarea 
+        name="description" 
+        placeholder="请输入详细描述" 
+        value="{{formData.description}}"
+        bindinput="inputDescription"
+      />
+      <view class="error-tip" wx:if="{{errors.description}}">{{errors.description}}</view>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">上传图片</view>
+      <view class="image-uploader">
+        <view class="image-list">
+          <block wx:for="{{formData.images}}" wx:key="*this">
+            <view class="image-item">
+              <image src="{{item}}" mode="aspectFill"/>
+              <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
+            </view>
+          </block>
+          <view class="upload-btn" bindtap="chooseImage" wx:if="{{formData.images.length < 3}}">
+            <text>+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-group">
+      <view class="form-label">联系方式</view>
+      <input 
+        name="contact" 
+        placeholder="请输入联系方式" 
+        value="{{formData.contact}}"
+        bindinput="inputContact"
+      />
+      <view class="error-tip" wx:if="{{errors.contact}}">{{errors.contact}}</view>
+    </view>
+
+    <button class="submit-btn" form-type="submit" type="primary">提交</button>
+  </form>
+</view> 
