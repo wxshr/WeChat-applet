@@ -42,7 +42,7 @@
     "showES6CompileOption": false
   },
   "appid": "wx811dae04b1278266",
-  "libVersion": "2.30.2",
+  "libVersion": "3.0.2",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",
