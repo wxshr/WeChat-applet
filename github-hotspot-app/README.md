@@ -27,7 +27,7 @@ GitHub API有请求频率限制，推荐在正式环境使用时添加自己的G
 
 ## 关于图片资源
 
-`/images`目录：
+需要添加以下图片资源到`/images`目录：
 - home.png / home_selected.png - 首页图标
 - trending.png / trending_selected.png - 趋势图标
 - favorite.png / favorite_selected.png - 收藏图标
