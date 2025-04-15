@@ -197,10 +197,59 @@ Page({
       return;
     }
     
-    // 跳转到文化遗产页面并传递搜索关键词
-    wx.navigateTo({
-      url: `/pages/heritage/heritage?keyword=${encodeURIComponent(keyword)}`
-    });
+    // 搜索匹配的文化遗产
+    const mockData = [
+      {
+        id: 1,
+        title: '京剧',
+        keywords: ['京剧', '戏曲', '国粹']
+      },
+      {
+        id: 2,
+        title: '景德镇陶瓷',
+        keywords: ['陶瓷', '景德镇', '瓷器']
+      },
+      {
+        id: 3,
+        title: '中医',
+        keywords: ['中医', '传统医学', '针灸', '中药']
+      },
+      {
+        id: 4,
+        title: '故宫',
+        keywords: ['故宫', '紫禁城', '宫殿']
+      },
+      {
+        id: 5,
+        title: '昆曲',
+        keywords: ['昆曲', '戏曲', '百戏之祖']
+      }
+    ];
+    
+    // 查找匹配的文化遗产
+    let matchedHeritage = null;
+    for (const item of mockData) {
+      if (item.title.includes(keyword) || item.keywords.some(k => k.includes(keyword))) {
+        matchedHeritage = item;
+        break;
+      }
+    }
+    
+    if (matchedHeritage) {
+      // 如果找到匹配的文化遗产，直接跳转到详情页
+      wx.navigateTo({
+        url: `/pages/heritage-detail/heritage-detail?id=${matchedHeritage.id}`
+      });
+    } else {
+      // 如果没有找到匹配的文化遗产，跳转到文化遗产列表页进行搜索
+      wx.switchTab({
+        url: `/pages/heritage/heritage`
+      });
+      
+      // 将关键词保存到全局数据，以便heritage页面获取
+      getApp().globalData = getApp().globalData || {};
+      getApp().globalData.searchKeyword = keyword;
+    }
   },
 
   /**

@@ -65,6 +65,43 @@ Page({
       },
       {
         id: 3,
+        title: '中医',
+        image: '/images/heritage/medicine.jpg',
+        category: '非物质文化遗产',
+        likes: 1842,
+        comments: 93,
+        description: '中医是中国传统医学，有着数千年的历史，是中华民族的宝贵文化遗产。中医以整体观念和辨证论治为基本特点，通过望、闻、问、切四诊合参的方法来诊断疾病，并采用针灸、中药、推拿、气功等治疗手段。',
+        images: [
+          '/images/heritage/medicine1.jpg',
+          '/images/heritage/medicine2.jpg',
+          '/images/heritage/medicine3.jpg'
+        ],
+        commentList: [
+          {
+            id: 1,
+            avatar: '/images/avatar/user9.jpg',
+            username: '中医爱好者',
+            content: '中医的整体观念和辨证论治理念非常值得现代医学借鉴！',
+            time: '2024-03-15 16:30'
+          },
+          {
+            id: 2,
+            avatar: '/images/avatar/user10.jpg',
+            username: '医学研究者',
+            content: '中医药在许多慢性病的治疗上有独特优势，应该得到更多的推广和研究。',
+            time: '2024-03-16 09:20'
+          },
+          {
+            id: 3,
+            avatar: '/images/avatar/user11.jpg',
+            username: '传统文化保护者',
+            content: '中医是中华文明的重要组成部分，凝聚着古人的智慧，我们应该好好传承。',
+            time: '2024-03-17 11:45'
+          }
+        ]
+      },
+      {
+        id: 4,
         title: '春节',
         image: '/images/heritage/spring-festival.jpg',
         category: '民俗文化',
@@ -95,7 +132,7 @@ Page({
         ]
       },
       {
-        id: 4,
+        id: 5,
         title: '故宫',
         image: '/images/heritage/forbidden-city.jpg',
         category: '历史建筑',
@@ -127,7 +164,7 @@ Page({
         ]
       },
       {
-        id: 5,
+        id: 6,
         title: '昆曲',
         image: '/images/heritage/kunqu.jpg',
         category: '非物质文化遗产',

@@ -18,7 +18,8 @@ Page({
       { id: 2, name: '非物质文化遗产' },
       { id: 3, name: '传统技艺' },
       { id: 4, name: '民俗文化' },
-      { id: 5, name: '历史建筑' }
+      { id: 5, name: '历史建筑' },
+      { id: 6, name: '中医文化' }
     ],
     leftList: [],
     rightList: [],
@@ -44,6 +45,25 @@ Page({
       this.searchHeritage(options.keyword);
     } else {
       this.loadHeritageData();
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+    // 检查全局数据中是否有搜索关键词
+    const app = getApp();
+    if (app.globalData && app.globalData.searchKeyword) {
+      const keyword = app.globalData.searchKeyword;
+      this.setData({
+        searchKeyword: keyword,
+        isSearchMode: true
+      });
+      this.searchHeritage(keyword);
+      
+      // 清除全局数据中的搜索关键词，避免重复搜索
+      app.globalData.searchKeyword = '';
     }
   },
 
@@ -121,6 +141,33 @@ Page({
         category: 3,
         likes: 289,
         comments: 56
+      },
+      {
+        id: 7,
+        title: '中医',
+        description: '中国传统医学，有着数千年的历史，以整体观念和辨证论治为基本特点，通过望、闻、问、切诊断疾病。',
+        imageUrl: '/images/heritage/medicine.jpg',
+        category: 6,
+        likes: 867,
+        comments: 93
+      },
+      {
+        id: 8,
+        title: '针灸',
+        description: '中医重要治疗手段，通过刺激人体特定穴位来调节机体功能，已有数千年历史，2010年被列入非遗名录。',
+        imageUrl: '/images/heritage/acupuncture.jpg',
+        category: 6,
+        likes: 756,
+        comments: 82
+      },
+      {
+        id: 9,
+        title: '中药炮制',
+        description: '中药材加工炮制技术，是中医药文化的重要组成部分，对保证中药安全有效至关重要。',
+        imageUrl: '/images/heritage/herbs.jpg',
+        category: 6,
+        likes: 634,
+        comments: 58
       }
     ];
 
@@ -187,6 +234,51 @@ Page({
         category: 5,
         likes: 1024,
         comments: 128
+      },
+      {
+        id: 5,
+        title: '昆曲',
+        description: '被誉为"百戏之祖"，距今已有六百多年历史。昆曲以曲词婉约、行腔细腻、表演程式化为特色。',
+        imageUrl: '/images/heritage/kunqu.jpg',
+        category: 2,
+        likes: 315,
+        comments: 67
+      },
+      {
+        id: 6,
+        title: '苏州刺绣',
+        description: '历史悠久，工艺精湛的传统手工艺。苏绣以绣工精细、图案秀丽、色彩和谐见长。',
+        imageUrl: '/images/heritage/embroidery.jpg',
+        category: 3,
+        likes: 289,
+        comments: 56
+      },
+      {
+        id: 7,
+        title: '中医',
+        description: '中国传统医学，有着数千年的历史，以整体观念和辨证论治为基本特点，通过望、闻、问、切诊断疾病。',
+        imageUrl: '/images/heritage/medicine.jpg',
+        category: 6,
+        likes: 867,
+        comments: 93
+      },
+      {
+        id: 8,
+        title: '针灸',
+        description: '中医重要治疗手段，通过刺激人体特定穴位来调节机体功能，已有数千年历史，2010年被列入非遗名录。',
+        imageUrl: '/images/heritage/acupuncture.jpg',
+        category: 6,
+        likes: 756,
+        comments: 82
+      },
+      {
+        id: 9,
+        title: '中药炮制',
+        description: '中药材加工炮制技术，是中医药文化的重要组成部分，对保证中药安全有效至关重要。',
+        imageUrl: '/images/heritage/herbs.jpg',
+        category: 6,
+        likes: 634,
+        comments: 58
       }
     ];
 
@@ -218,7 +310,7 @@ Page({
    * 显示文化遗产详情
    * @param {Object} e - 事件对象
    */
-  showDetail(e) {
+  goToDetail(e) {
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: `/pages/heritage-detail/heritage-detail?id=${id}`
