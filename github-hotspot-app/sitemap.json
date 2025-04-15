@@ -1,7 +1,0 @@
-{
-  "desc": "GitHub热点小程序的索引",
-  "rules": [{
-    "action": "allow",
-    "page": "*"
-  }]
-} 
