@@ -1,0 +1,75 @@
+/* components/repo-card.wxss */
+.repo-card {
+  transition: all 0.3s ease;
+}
+
+.repo-card:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.repo-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.tags {
+  margin: 16rpx 0;
+}
+
+.stats {
+  margin-top: 16rpx;
+}
+
+.meta {
+  margin-right: 20rpx;
+  font-size: 26rpx;
+  color: #586069;
+  display: flex;
+  align-items: center;
+}
+
+.updated-at {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+}
+
+.star-btn {
+  background: transparent;
+  padding: 0;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.star-btn::after {
+  border: none;
+}
+
+.star-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.language-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  margin-right: 6rpx;
+}
+
+.icon-small {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 6rpx;
+} 

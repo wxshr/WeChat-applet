@@ -1,0 +1,192 @@
+<!-- pages/repo-detail/repo-detail.wxml -->
+<view class="container">
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{isLoading}}">
+    <view class="loading-icon"></view>
+    <text>加载中...</text>
+  </view>
+  
+  <!-- 仓库信息 -->
+  <block wx:if="{{!isLoading && repoInfo}}">
+    <!-- 仓库头部 -->
+    <view class="header card">
+      <view class="flex-row">
+        <image class="avatar" src="{{repoInfo.owner.avatar_url}}" mode="aspectFill"></image>
+        <view class="flex-column repo-info">
+          <text class="title">{{repoInfo.full_name}}</text>
+          <text class="text-secondary" wx:if="{{repoInfo.private}}">私有仓库</text>
+        </view>
+      </view>
+      
+      <view class="description" wx:if="{{repoInfo.description}}">{{repoInfo.description}}</view>
+      
+      <!-- 标签 -->
+      <view class="flex-row flex-wrap tags" wx:if="{{repoInfo.topics && repoInfo.topics.length > 0}}">
+        <view class="badge badge-primary" wx:for="{{repoInfo.topics}}" wx:key="*this">
+          {{item}}
+        </view>
+      </view>
+      
+      <!-- 基本信息 -->
+      <view class="flex-row stats">
+        <view class="stat-item">
+          <view class="stat-value">{{repoInfo.stargazers_count}}</view>
+          <view class="stat-label">Stars</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-value">{{repoInfo.forks_count}}</view>
+          <view class="stat-label">Forks</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-value">{{repoInfo.watchers_count}}</view>
+          <view class="stat-label">Watchers</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-value">{{repoInfo.open_issues_count}}</view>
+          <view class="stat-label">Issues</view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 选项卡 -->
+    <view class="tabs">
+      <view class="tab {{currentTab === 'info' ? 'active' : ''}}" data-tab="info" bindtap="switchTab">基本信息</view>
+      <view class="tab {{currentTab === 'activity' ? 'active' : ''}}" data-tab="activity" bindtap="switchTab">活跃度</view>
+      <view class="tab {{currentTab === 'contributors' ? 'active' : ''}}" data-tab="contributors" bindtap="switchTab">贡献者</view>
+    </view>
+    
+    <!-- 基本信息选项卡内容 -->
+    <view class="tab-content" wx:if="{{currentTab === 'info'}}">
+      <!-- 详细信息卡片 -->
+      <view class="card">
+        <view class="subtitle">仓库信息</view>
+        
+        <view class="info-item">
+          <view class="info-label">编程语言</view>
+          <view class="info-value flex-row" wx:if="{{repoInfo.language}}">
+            <view class="language-dot" style="background-color: {{repoInfo.language_color || '#563d7c'}}"></view>
+            <text>{{repoInfo.language}}</text>
+          </view>
+          <view class="info-value" wx:else>未指定</view>
+        </view>
+        
+        <view class="info-item">
+          <view class="info-label">创建时间</view>
+          <view class="info-value">{{formatTime(repoInfo.created_at)}}</view>
+        </view>
+        
+        <view class="info-item">
+          <view class="info-label">最近更新</view>
+          <view class="info-value">{{formatTime(repoInfo.updated_at)}}</view>
+        </view>
+        
+        <view class="info-item">
+          <view class="info-label">最近推送</view>
+          <view class="info-value">{{formatTime(repoInfo.pushed_at)}}</view>
+        </view>
+        
+        <view class="info-item" wx:if="{{repoInfo.license}}">
+          <view class="info-label">开源协议</view>
+          <view class="info-value">{{repoInfo.license.name || repoInfo.license.spdx_id}}</view>
+        </view>
+        
+        <view class="info-item">
+          <view class="info-label">默认分支</view>
+          <view class="info-value">{{repoInfo.default_branch}}</view>
+        </view>
+        
+        <view class="info-item" wx:if="{{repoInfo.homepage}}">
+          <view class="info-label">主页</view>
+          <view class="info-value link" data-url="{{repoInfo.homepage}}" bindtap="copyLink">
+            {{repoInfo.homepage}}
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 活跃度选项卡内容 -->
+    <view class="tab-content" wx:if="{{currentTab === 'activity'}}">
+      <view class="card">
+        <view class="subtitle">提交活跃度</view>
+        
+        <view class="flex-column">
+          <view class="loading" wx:if="{{isLoadingActivity}}">
+            <view class="loading-icon"></view>
+            <text>加载中...</text>
+          </view>
+          
+          <view class="empty-tip" wx:if="{{!isLoadingActivity && (!commitActivity || commitActivity.length === 0)}}">
+            <image src="../../images/empty.png" mode="aspectFit"></image>
+            <text>暂无活动数据</text>
+          </view>
+          
+          <view class="activity-chart" wx:if="{{!isLoadingActivity && commitActivity && commitActivity.length > 0}}">
+            <view class="chart-info">
+              <text>显示最近10周的提交活动</text>
+            </view>
+            
+            <view class="chart-bars">
+              <view class="chart-bar" wx:for="{{commitActivity}}" wx:key="index">
+                <view class="bar-value" style="height: {{(item.total / maxCommits) * 200}}rpx;"></view>
+                <text class="bar-label">第{{item.week}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 贡献者选项卡内容 -->
+    <view class="tab-content" wx:if="{{currentTab === 'contributors'}}">
+      <view class="card">
+        <view class="subtitle">贡献者</view>
+        
+        <view class="flex-column">
+          <view class="loading" wx:if="{{isLoadingContributors}}">
+            <view class="loading-icon"></view>
+            <text>加载中...</text>
+          </view>
+          
+          <view class="empty-tip" wx:if="{{!isLoadingContributors && (!contributors || contributors.length === 0)}}">
+            <image src="../../images/empty.png" mode="aspectFit"></image>
+            <text>暂无贡献者数据</text>
+          </view>
+          
+          <view class="contributor-list" wx:if="{{!isLoadingContributors && contributors && contributors.length > 0}}">
+            <view class="contributor-item" wx:for="{{contributors}}" wx:key="id">
+              <image class="contributor-avatar" src="{{item.avatar_url}}" mode="aspectFill"></image>
+              <view class="contributor-info">
+                <text class="contributor-name">{{item.login}}</text>
+                <text class="contributor-commits">{{item.contributions}} 次提交</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  
+  <!-- 空状态提示 -->
+  <view class="empty-tip" wx:if="{{!isLoading && !repoInfo}}">
+    <image src="../../images/empty.png" mode="aspectFit"></image>
+    <text>无法获取仓库信息</text>
+  </view>
+  
+  <!-- 底部操作栏 -->
+  <view class="action-bar" wx:if="{{repoInfo}}">
+    <button class="action-btn" bindtap="toggleFavorite">
+      <image src="{{isFavorited ? '../../images/star_filled.png' : '../../images/star_outline.png'}}" mode="aspectFit"></image>
+      <text>{{isFavorited ? '已收藏' : '收藏'}}</text>
+    </button>
+    
+    <button class="action-btn" bindtap="openGitHub">
+      <image src="../../images/github.png" mode="aspectFit"></image>
+      <text>查看GitHub</text>
+    </button>
+    
+    <button class="action-btn" open-type="share">
+      <image src="../../images/share.png" mode="aspectFit"></image>
+      <text>分享</text>
+    </button>
+  </view>
+</view> 

@@ -1,0 +1,249 @@
+/* pages/trending/trending.wxss */
+.container {
+  padding-top: 0;
+}
+
+/* 时间筛选 */
+.time-filter {
+  display: flex;
+  background-color: #fff;
+  padding: 20rpx 24rpx;
+  border-bottom: 2rpx solid #eaecef;
+}
+
+.filter-option {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: #586069;
+  position: relative;
+  border-radius: 8rpx;
+  margin: 0 10rpx;
+}
+
+.filter-option.active {
+  color: #0366d6;
+  background-color: #f1f8ff;
+  font-weight: 500;
+}
+
+/* 语言筛选 */
+.language-filter {
+  white-space: nowrap;
+  padding: 20rpx 24rpx 10rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #eaecef;
+}
+
+.filter-item {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  font-size: 28rpx;
+  color: #586069;
+  border-radius: 40rpx;
+  transition: all 0.3s;
+}
+
+.filter-item.active {
+  color: #0366d6;
+  background-color: #f1f8ff;
+  font-weight: 500;
+}
+
+/* 趋势列表 */
+.trending-list {
+  padding-bottom: 30rpx;
+}
+
+.repo-header {
+  margin-bottom: 16px;
+}
+
+.repo-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0366d6;
+  margin-bottom: 12px;
+}
+
+.favorite-btn {
+  padding: 8px;
+}
+
+.favorite-btn image {
+  width: 24px;
+  height: 24px;
+}
+
+.repo-description {
+  color: #586069;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.repo-stats {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  color: #586069;
+}
+
+.stat-item image {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.language-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.tabs {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.tab.active {
+  color: #0366d6;
+  font-weight: 500;
+  position: relative;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background-color: #0366d6;
+  border-radius: 3px 3px 0 0;
+}
+
+.info-item {
+  display: flex;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.info-label {
+  width: 70px;
+  color: #586069;
+  flex-shrink: 0;
+}
+
+.info-value {
+  flex: 1;
+  word-break: break-all;
+}
+
+.link {
+  color: #0366d6;
+}
+
+.open-github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 10px;
+  background-color: #24292e;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.open-github image {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.activity-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.activity-chart {
+  height: 200px;
+  margin-top: 16px;
+}
+
+.chart-bars {
+  display: flex;
+  height: 160px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.chart-bar {
+  width: 24px;
+  background-color: #0366d6;
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  min-height: 4px;
+}
+
+.chart-bar:hover .bar-tooltip {
+  opacity: 1;
+}
+
+.bar-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  margin-bottom: 4px;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.chart-label {
+  font-size: 12px;
+  color: #586069;
+  text-align: center;
+  width: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+} 

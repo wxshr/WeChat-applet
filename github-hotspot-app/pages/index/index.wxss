@@ -1,0 +1,99 @@
+/* pages/index/index.wxss */
+.container {
+  padding-top: 0;
+}
+
+/* 搜索栏 */
+.search-bar {
+  padding: 20rpx 24rpx;
+  background-color: #fff;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #f6f8fa;
+  border-radius: 40rpx;
+  padding: 16rpx 20rpx;
+}
+
+.search-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+.search-placeholder {
+  font-size: 28rpx;
+  color: #6a737d;
+}
+
+/* 语言筛选 */
+.language-filter {
+  white-space: nowrap;
+  padding: 20rpx 24rpx 10rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #eaecef;
+}
+
+.filter-item {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  font-size: 28rpx;
+  color: #586069;
+  border-radius: 40rpx;
+  transition: all 0.3s;
+}
+
+.filter-item.active {
+  color: #0366d6;
+  background-color: #f1f8ff;
+  font-weight: 500;
+}
+
+/* 仓库列表 */
+.repo-list {
+  padding-bottom: 30rpx;
+}
+
+.loading-icon {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #0366d6;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading, .empty-tip, .load-more, .load-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  color: #586069;
+  font-size: 14px;
+}
+
+.empty-tip {
+  flex-direction: column;
+  padding: 40px 0;
+}
+
+.empty-tip image {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 12px;
+  opacity: 0.6;
+}
+
+.load-all {
+  color: #8b949e;
+} 
