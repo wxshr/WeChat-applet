@@ -13,13 +13,19 @@ Component({
   },
   
   methods: {
+    // 格式化时间
+    formatTime(dateString) {
+      if (!dateString) return '';
+      return util.formatTimeAgo(dateString);
+    },
+
     // 点击卡片跳转到详情页
     onTapCard: function() {
       const repo = this.properties.repo;
       if (!repo) return;
       
       wx.navigateTo({
-        url: `/pages/trending/trending?owner=${repo.owner.login}&repo=${repo.name}`
+        url: `/pages/repo-detail/repo-detail?owner=${repo.owner.login}&repo=${repo.name}`
       });
     },
     

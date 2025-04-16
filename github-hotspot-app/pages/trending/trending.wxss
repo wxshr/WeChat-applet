@@ -1,4 +1,62 @@
 /* pages/trending/trending.wxss */
+.container {
+  padding-top: 0;
+}
+
+/* 时间筛选 */
+.time-filter {
+  display: flex;
+  background-color: #fff;
+  padding: 20rpx 24rpx;
+  border-bottom: 2rpx solid #eaecef;
+}
+
+.filter-option {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: #586069;
+  position: relative;
+  border-radius: 8rpx;
+  margin: 0 10rpx;
+}
+
+.filter-option.active {
+  color: #0366d6;
+  background-color: #f1f8ff;
+  font-weight: 500;
+}
+
+/* 语言筛选 */
+.language-filter {
+  white-space: nowrap;
+  padding: 20rpx 24rpx 10rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #eaecef;
+}
+
+.filter-item {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  font-size: 28rpx;
+  color: #586069;
+  border-radius: 40rpx;
+  transition: all 0.3s;
+}
+
+.filter-item.active {
+  color: #0366d6;
+  background-color: #f1f8ff;
+  font-weight: 500;
+}
+
+/* 趋势列表 */
+.trending-list {
+  padding-bottom: 30rpx;
+}
+
 .repo-header {
   margin-bottom: 16px;
 }

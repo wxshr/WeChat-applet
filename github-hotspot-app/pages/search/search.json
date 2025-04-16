@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "GitHub趋势",
+  "navigationBarTitleText": "搜索仓库",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "repo-card": "/components/repo-card"

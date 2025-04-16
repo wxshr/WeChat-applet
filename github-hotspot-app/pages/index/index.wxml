@@ -1,5 +1,13 @@
 <!-- pages/index/index.wxml -->
 <view class="container">
+  <!-- 顶部搜索栏 -->
+  <view class="search-bar" bindtap="navigateToSearch">
+    <view class="search-box">
+      <image class="search-icon" src="../../images/search.png" mode="aspectFit"></image>
+      <text class="search-placeholder">搜索GitHub仓库</text>
+    </view>
+  </view>
+  
   <!-- 语言筛选 -->
   <scroll-view scroll-x class="language-filter">
     <view class="filter-item {{currentLanguage === item.value ? 'active' : ''}}" 
@@ -31,17 +39,17 @@
     
     <!-- 无数据提示 -->
     <view class="empty-tip" wx:if="{{!isLoading && weekly.length === 0}}">
-      <image src="/images/empty.png" mode="aspectFit"></image>
+      <image src="../../images/empty.png" mode="aspectFit"></image>
       <text>暂无数据</text>
     </view>
     
     <!-- 加载更多提示 -->
-    <view class="load-more" wx:if="{{!isLoading && hasMore && weekly.length > 0}}">
+    <view class="footer-tip" wx:if="{{!isLoading && hasMore && weekly.length > 0}}">
       <text>上拉加载更多</text>
     </view>
     
     <!-- 已加载全部提示 -->
-    <view class="load-all" wx:if="{{!isLoading && !hasMore && weekly.length > 0}}">
+    <view class="footer-tip" wx:if="{{!isLoading && !hasMore && weekly.length > 0}}">
       <text>已加载全部</text>
     </view>
   </view>

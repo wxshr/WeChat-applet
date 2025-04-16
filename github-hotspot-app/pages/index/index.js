@@ -13,7 +13,12 @@ Page({
       { name: 'Python', value: 'python' },
       { name: 'Java', value: 'java' },
       { name: 'Go', value: 'go' },
-      { name: 'Rust', value: 'rust' }
+      { name: 'Rust', value: 'rust' },
+      { name: 'TypeScript', value: 'typescript' },
+      { name: 'C++', value: 'cpp' },
+      { name: 'PHP', value: 'php' },
+      { name: 'Swift', value: 'swift' },
+      { name: 'Kotlin', value: 'kotlin' }
     ],
     currentLanguage: ''
   },
@@ -38,6 +43,13 @@ Page({
   onReachBottom: function() {
     if (!this.data.hasMore || this.data.isLoading) return;
     this.fetchTrendingRepos(this.data.currentPage + 1);
+  },
+  
+  // 跳转到搜索页面
+  navigateToSearch: function() {
+    wx.navigateTo({
+      url: '/pages/search/search'
+    });
   },
   
   // 选择编程语言

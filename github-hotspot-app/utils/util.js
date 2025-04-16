@@ -107,11 +107,48 @@ function getFavorites() {
   }
 }
 
+/**
+ * 格式化时间为相对时间（几分钟前，几小时前，几天前等）
+ * @param {string} dateString - ISO格式的日期字符串
+ */
+function formatTimeAgo(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diff = Math.floor((now - date) / 1000); // 差异（秒）
+  
+  if (diff < 60) {
+    return '刚刚';
+  } else if (diff < 3600) {
+    return Math.floor(diff / 60) + '分钟前';
+  } else if (diff < 86400) {
+    return Math.floor(diff / 3600) + '小时前';
+  } else if (diff < 2592000) {
+    return Math.floor(diff / 86400) + '天前';
+  } else if (diff < 31536000) {
+    return Math.floor(diff / 2592000) + '个月前';
+  } else {
+    return Math.floor(diff / 31536000) + '年前';
+  }
+}
+
+/**
+ * 格式化日期为 YYYY-MM-DD 格式
+ * @param {Date} date - 日期对象
+ */
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}-${formatNumber(month)}-${formatNumber(day)}`;
+}
+
 module.exports = {
   formatTime,
   formatCount,
   parseRepoFullName,
   toggleFavorite,
   isFavorite,
-  getFavorites
+  getFavorites,
+  formatTimeAgo,
+  formatDate
 }; 

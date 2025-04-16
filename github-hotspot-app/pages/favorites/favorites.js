@@ -43,6 +43,13 @@ Page({
     }
   },
   
+  // 跳转到首页
+  navigateToIndex: function() {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
+  },
+  
   // 清空所有收藏
   clearAllFavorites: function() {
     wx.showModal({

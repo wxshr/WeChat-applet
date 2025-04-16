@@ -7,7 +7,7 @@
   
   <!-- 收藏列表 -->
   <view class="favorites-list">
-    <block wx:if="{{!isEmpty}}">
+    <block wx:if="{{favorites.length > 0}}">
       <repo-card 
         wx:for="{{favorites}}" 
         wx:key="id" 
@@ -15,13 +15,21 @@
         isFavorited="{{true}}"
         bind:favoriteChange="onFavoriteChange">
       </repo-card>
+      
+      <!-- 管理按钮 -->
+      <view class="manage-bar">
+        <button class="manage-btn" bindtap="clearAllFavorites">
+          <image class="btn-icon" src="../../images/trash.png" mode="aspectFit"></image>
+          <text>清空收藏</text>
+        </button>
+      </view>
     </block>
     
-    <!-- 暂无收藏提示 -->
+    <!-- 空收藏提示 -->
     <view class="empty-tip" wx:if="{{isEmpty}}">
-      <image src="/images/empty.png" mode="aspectFit"></image>
-      <text>暂无收藏</text>
-      <view class="tip-action">去浏览更多GitHub热门项目吧！</view>
+      <image src="../../images/empty_favorite.png" mode="aspectFit"></image>
+      <text>还没有收藏任何仓库</text>
+      <button class="primary" bindtap="navigateToIndex">去首页看看</button>
     </view>
   </view>
 </view> 

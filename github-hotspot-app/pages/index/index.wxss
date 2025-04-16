@@ -1,38 +1,60 @@
 /* pages/index/index.wxss */
-.language-filter {
-  display: flex;
-  white-space: nowrap;
+.container {
+  padding-top: 0;
+}
+
+/* 搜索栏 */
+.search-bar {
+  padding: 20rpx 24rpx;
   background-color: #fff;
-  padding: 10px 0;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  margin-bottom: 12px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #f6f8fa;
+  border-radius: 40rpx;
+  padding: 16rpx 20rpx;
+}
+
+.search-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+.search-placeholder {
+  font-size: 28rpx;
+  color: #6a737d;
+}
+
+/* 语言筛选 */
+.language-filter {
+  white-space: nowrap;
+  padding: 20rpx 24rpx 10rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #eaecef;
 }
 
 .filter-item {
   display: inline-block;
-  padding: 8px 16px;
-  margin: 0 4px;
-  border-radius: 16px;
-  font-size: 14px;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  font-size: 28rpx;
+  color: #586069;
+  border-radius: 40rpx;
   transition: all 0.3s;
 }
 
-.filter-item:first-child {
-  margin-left: 16px;
-}
-
-.filter-item:last-child {
-  margin-right: 16px;
-}
-
 .filter-item.active {
-  background-color: #0366d6;
-  color: #fff;
+  color: #0366d6;
+  background-color: #f1f8ff;
+  font-weight: 500;
 }
 
+/* 仓库列表 */
 .repo-list {
-  flex: 1;
-  width: 100%;
+  padding-bottom: 30rpx;
 }
 
 .loading-icon {

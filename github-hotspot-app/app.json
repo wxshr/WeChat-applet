@@ -2,13 +2,16 @@
   "pages": [
     "pages/index/index",
     "pages/trending/trending",
-    "pages/favorites/favorites"
+    "pages/favorites/favorites",
+    "pages/repo-detail/repo-detail",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#24292e",
     "navigationBarTitleText": "GitHub热点",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "onReachBottomDistance": 50
   },
   "tabBar": {
     "color": "#7A7E83",
@@ -37,5 +40,8 @@
     ]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "resizable": false,
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {}
 } 
